@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Form</title>
+</head>
+
+<body>
+    <div id="f"></div>
+    
+    <script>
+        //connect to html
+        const di = document.getElementById('f');
+
+        //create a form element
+        const form = document.createElement('form');
+
+        //some styling to the form
+        form.style.display = 'flex';
+        form.style.flexDirection = 'column';
+        form.style.width = "320px";
+        form.style.border = '1px solid #ccc';
+        form.style.margin = 'auto';
+        form.style.padding = "10px";
+        form.style.alignContent = 'center';
+
+        //create a form header
+        const header = document.createElement('h1');
+        header.textContent = 'Information Form';
+        header.style.fontSize = '24px';
+        header.style.margin = '0px';
+        header.style.marginBottom = '10px';
+        header.style.textAlign = 'center';
+        form.appendChild(header);
+
+        //create name input and label
+        const name = document.createElement('div');
+        name.setAttribute('class', 'form-group');
+        name.setAttribute('id', 'name-container');
+        const labelName = document.createElement('label');
+        labelName.textContent = 'Name: ';
+        const nameValue = document.createElement('input');
+        nameValue.type = 'text';
+        nameValue.placeholder = 'Enter your name';
+        nameValue.id = 'namename';
+        const errorName = document.createElement('span');
+        errorName.id="errorName";
+        errorName.classList="error";
+        name.appendChild(labelName);
+        name.appendChild(nameValue);
+        name.appendChild(errorName);
+        form.appendChild(name);
+
+        //create email input and label
+        const email = document.createElement('div');
+        email.setAttribute('class', 'form-group');
+        email.setAttribute('id', 'email-container');
+        const labelEmail = document.createElement('label');
+        labelEmail.textContent = 'Email: ';
+        const emailValue = document.createElement('input');
+        emailValue.type = 'email';
+        emailValue.placeholder = 'Enter your email';
+        emailValue.id = 'email';
+        email.appendChild(labelEmail);
+        email.appendChild(emailValue);
+        form.appendChild(email);
+
+        //create password input and label
+        const password = document.createElement('div');
+        password.setAttribute('class', 'form-group');
+        password.setAttribute('id', 'password-container');
+        const labelPassword = document.createElement('label');
+        labelPassword.textContent = 'Password: ';
+        const passwordValue = document.createElement('input');
+        passwordValue.type = 'password';
+        passwordValue.placeholder = 'Enter your password';
+        passwordValue.id = 'password';
+        password.appendChild(labelPassword);
+        password.appendChild(passwordValue);
+        //add show/hide password button
+        const btn = document.createElement('span');
+        btn.textContent = "S";
+        btn.style.cursor = "pointer";
+        btn.style.border = "1px solid black";
+        btn.style.borderRadius = "9px";
+        btn.addEventListener('click', function () {
+            if (passwordValue.type === "password") {
+                passwordValue.type = "text";
+                btn.textContent = "H";
+            }
+            else {
+                passwordValue.type = "password";
+                btn.textContent = "S";
+            }
+        });
+        password.appendChild(btn);
+        form.appendChild(password);
+
+        //create confirm password input and label
+        const ConfirmPassword = document.createElement('div');
+        ConfirmPassword.setAttribute('class', 'form-group');
+        ConfirmPassword.setAttribute('id', 'confirmPassword-container');
+        const labelConfirmPassword = document.createElement('label');
+        labelConfirmPassword.textContent = 'Confirm Password: ';
+        const confirmPasswordValue = document.createElement('input');
+        confirmPasswordValue.type = 'password';
+        confirmPasswordValue.placeholder = 'Confirm your password';
+        confirmPasswordValue.id = 'confirmPassword';
+        ConfirmPassword.appendChild(labelConfirmPassword);
+        ConfirmPassword.appendChild(confirmPasswordValue);
+        //add show/hide password button
+        const btnc = document.createElement('span');
+        btnc.textContent = "S";
+        btnc.style.cursor = "pointer";
+        btnc.style.border = "1px solid black";
+        btnc.style.borderRadius = "9px";
+        btnc.addEventListener('click', function () {
+            if (confirmPasswordValue.type === "password") {
+                confirmPasswordValue.type = "text";
+                btnc.textContent = "H";
+            }
+            else {
+                confirmPasswordValue.type = "password";
+                btnc.textContent = "S";
+            }
+        });
+        ConfirmPassword.appendChild(btnc);
+        form.appendChild(ConfirmPassword);
+
+        //create submit button
+        const submitButton = document.createElement('button');
+        submitButton.type ='submit';
+        submitButton.textContent = 'Submit';
+        form.appendChild(submitButton);
+
+        //append form to the div
+        di.appendChild(form);
+
+
+        //submit button press
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); 
+            printValue();
+        });
+
+        
+        function printValue() {
+        const name = document.getElementById('namename').value.trim(); // Get the value of the input
+        console.log(name);
+    }
+
+    </script>
+</body>
+
+</html>
